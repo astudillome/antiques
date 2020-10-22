@@ -1,10 +1,14 @@
 {
   "development": {
+    "username": "mcarbonell",
+    "password": "cl0thTurtl3",
     "database": "express_auth_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
+    "username": "mcarbonell",
+    "password": "cl0thTurtl3",
     "database": "express_auth_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
