@@ -1,8 +1,8 @@
 const express = require('express');
-const db = require('../models')
+const passport = require('../config/ppConfig');
+const db = require('../models');
 const router = express.Router();
 const passport = require('../config/ppConfig');
-
 
 
 router.get('/signup', (req, res) => {
@@ -10,30 +10,32 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-  // finding or creating a user, given their name, password, and emial
+  // find or create a user, providing the name and password as default values
   db.user.findOrCreate({
     where: {
       email: req.body.email
-    },
-    defaults: {
+    }, defaults: {
       name: req.body.name,
       password: req.body.password
     }
   }).then(([user, created]) => {
-    // if created, this means success and we can redirect to home
-      if (created) {
-        console.log(`${user.name} was created!`)
-        res.redirect('/');
-      } else {
-        // if not created, the email already exists
-        console.log(`${user.email} already exists`)
-        res.redirect('auth/login');
-      }
+    if (created) {
+      // if created, success and login
+      console.log('user created');
+      passport.authenticate('local', {
+        successRedirect: '/',
+        successFlash: 'Account created and logged in'
+      })(req, res);
+    } else {
+      // if not created, the email already exists
+      req.flash('error', 'Email already exists');
+      res.redirect('/auth/signup');
+    }
   }).catch(error => {
-    // if an error occurs, let's see it!
-      console.log(`An error occurred: ${error.message}`)
-      res.direct('/auth/signup');
-  })
+    // if an error occurs, let's see what the error is
+    req.flash('error', error.message);
+    res.redirect('/auth/signup');
+  });
 })
 
 router.get('/login', (req, res) => {
@@ -41,13 +43,20 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {
+<<<<<<< HEAD
   successRedirect: '/profile',
+=======
+  successRedirect: '/',
+>>>>>>> submain
   failureRedirect: '/auth/login',
   failureFlash: 'Invalid username and/or password',
   successFlash: 'You have logged in'
 }));
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> submain
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success', 'You have logged out');

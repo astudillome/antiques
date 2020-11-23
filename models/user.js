@@ -1,5 +1,5 @@
 'use strict';
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 const {
   Model
@@ -15,18 +15,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
 
-    // compares entered password to a hashed password (runs on login)
-    // no static keyword because it runs on any instance
+    // Compares entered password to hashed password
     validPassword(passwordTyped) {
-      return bcrypt.compareSync(passwordTyped, this.password)
+      return bcrypt.compareSync(passwordTyped, this.password);
+    };
+
+    // remove the password before serializing
+    toJSON() {
+      let userData = this.get();
+      delete userData.password;
+      return userData;
     }
 
-    // Make sure to remove the hashed password from the user object before serializing
-    toJSON () {
-      let userData = this.get()
-      delete userData.password
-      return userData
-    }
   };
   user.init({
     email: {
@@ -61,7 +61,6 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   user.beforeCreate((pendingUser, options) => {
-    // if a user exists & if that user has a password
     if (pendingUser && pendingUser.password) {
       // hash the password
       let hash = bcrypt.hashSync(pendingUser.password, 12);
