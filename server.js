@@ -2,6 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const layouts = require('express-ejs-layouts');
 const session = require('express-session')
+const flash = require('connect-flash');
+const passport = require('./config/ppConfig');
+const isLoggedIn = require('./middleware/isLoggedIn');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -16,6 +19,21 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use((req, res, next) => {
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  next();
+});
+
+
+// routes 
 app.get('/', (req, res) => {
   res.render('index');
 });

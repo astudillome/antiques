@@ -1,6 +1,8 @@
 const express = require('express');
 const db = require('../models')
 const router = express.Router();
+const passport = require('../config/ppConfig');
+
 
 
 router.get('/signup', (req, res) => {
@@ -36,6 +38,20 @@ router.post('/signup', (req, res) => {
 
 router.get('/login', (req, res) => {
   res.render('auth/login');
+});
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  failureRedirect: '/auth/login',
+  failureFlash: 'Invalid username and/or password',
+  successFlash: 'You have logged in'
+}));
+
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success', 'You have logged out');
+  res.redirect('/');
 });
 
 module.exports = router;
