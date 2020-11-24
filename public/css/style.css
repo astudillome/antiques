@@ -104,9 +104,9 @@ nav ul:nth-child(n+2) {
   min-width:50%
 }
 
-.display {
-  font-family: var(--displayTxt);
-}
+/* .display { */
+  /* font-family: var(--displayTxt); */
+/* } */
 
 .marginMed {
   margin: 1.5em;
