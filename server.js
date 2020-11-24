@@ -51,13 +51,13 @@ app.use('/auth', require('./routes/auth'));
 
 
 // Password protected route
-const config = {
-  email: "admin@ourantiques.com",
-  password: "enter" 
-}
-app.use(passwordProtected(config))
+// const config = {
+//   email: "admin@ourantiques.com",
+//   password: "enter" 
+// }
+// app.use(passwordProtected(config))
 
-app.use('/dashboard', isLoggedIn, require('./routes/dashboard'))
+// app.use('/dashboard', isLoggedIn, require('./routes/dashboard'))
 
 // Server
 var server = app.listen(process.env.PORT || 3000, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
