@@ -168,3 +168,14 @@ nav ul:nth-child(n+2) {
 .btn {
   margin: 1rem;
 }
+
+/* Modal Button */
+
+#modalButton {
+  outline: none !important;
+  padding: 0 !important;
+  border: 0;
+  vertical-align: baseline;
+  background: none !important;
+  color: default !important;
+}
