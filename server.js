@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const isUserLoggedIn = require('./middleware/isUserLoggedIn')
 const app = express();
 
 
@@ -41,23 +42,13 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.render('index');
 });
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
-});
-
 
 // Use routes
 app.use('/auth', require('./routes/auth'));
+app.use('/dashboard', isUserLoggedIn, require('./routes/dashboard'));
 
 
-// Password protected route
-// const config = {
-//   email: "admin@ourantiques.com",
-//   password: "enter" 
-// }
-// app.use(passwordProtected(config))
 
-// app.use('/dashboard', isLoggedIn, require('./routes/dashboard'))
 
 // Server
 var server = app.listen(process.env.PORT || 3000, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
