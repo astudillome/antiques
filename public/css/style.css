@@ -1,21 +1,13 @@
 html {
 
-  
-  /* fallback font size: should be large enough for mobile screens */
   font-size: 18px;
   
-  /* responsive font size --from CSS Tricks*/
   font-size: min(max(16px, 2vw), 24px);
   
   scroll-behavior: smooth;
 
-
-
-  /* high emph dark text for light backgrounds */
   --darkColor: hsla(0, 0%, 0%, .87);
-  /* high emph light text for dark backgrounds */
   --lightColor: #DADADA
-  /* high emph light text for dark backgrounds */
   --mainColor: var(--lightColor);
   --light-grey: #494949;
   --rose: #c97f7f;
@@ -25,10 +17,8 @@ html {
   --green: #0D532E;
   --pink: #FFe7e7;
 
-  /* background colors */
   --lightBg: #DADADA;
   --darkBg: #FFFFFF;
-  /* primary background color */
   --mainBg: var(--lightBg);
 
   --bodyTxt: 'Noto Sans', 'Roboto', sans-serif;
@@ -63,4 +53,13 @@ body > .container {
 
 code {
   font-size: 80%;
+}
+
+.image{
+max-width: 120px;
+max-height: 120px;
+}
+
+#bottom-div{
+  background-color: var(--pink) !important;
 }
