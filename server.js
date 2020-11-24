@@ -10,9 +10,9 @@ const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const app = express();
 
+
 // Middleware
 app.set('view engine', 'ejs');
-
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
@@ -48,8 +48,16 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 // Use routes
 app.use('/auth', require('./routes/auth'));
-// app.use('/search', require('./routes/search'));
-// app.use('/dashboard', isLoggedIn, require('./routes/dashboard'))
+
+
+// Password protected route
+const config = {
+  email: "admin@ourantiques.com",
+  password: "enter" 
+}
+app.use(passwordProtected(config))
+
+app.use('/dashboard', isLoggedIn, require('./routes/dashboard'))
 
 // Server
 var server = app.listen(process.env.PORT || 3000, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
