@@ -10,9 +10,9 @@ const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const app = express();
 
+
 // Middleware
 app.set('view engine', 'ejs');
-
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
@@ -48,7 +48,15 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 // Use routes
 app.use('/auth', require('./routes/auth'));
-// app.use('/search', require('./routes/search'));
+
+
+// Password protected route
+// const config = {
+//   email: "admin@ourantiques.com",
+//   password: "enter" 
+// }
+// app.use(passwordProtected(config))
+
 // app.use('/dashboard', isLoggedIn, require('./routes/dashboard'))
 
 // Server
