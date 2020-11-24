@@ -14,3 +14,215 @@
     <% } %>
   </ul>
 </nav>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Sign Up!
+</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create an account!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+          <form action="/auth/signup" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" id="new-email" type="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label> 
+                <input class="form-control" id="new-name" type="text" name="name">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="new-password" type="password" name="password">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button value= "Sign up" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  html {
+    box-sizing: border-box;
+    
+    /* fallback font size: should be large enough for mobile screens */
+    font-size: 18px;
+    
+    /* responsive font size --from CSS Tricks*/
+    font-size: min(max(16px, 2vw), 24px);
+    
+    scroll-behavior: smooth;
+  
+    --mainMargin: 2rem;
+    margin: var(--mainMargin);
+  
+    /* high emph dark text for light backgrounds */
+    --darkColor: hsla(0, 0%, 0%, .87);
+    /* high emph light text for dark backgrounds */
+    --lightColor: hsla(0, 0%, 100%, .87);
+    /* high emph light text for dark backgrounds */
+    --mainColor: var(--darkColor);
+  
+    /* background colors */
+    --lightBg: #ffffff;
+    --darkBg: #121212;
+    /* primary background color */
+    --mainBg: var(--lightBg);
+  
+    --bodyTxt: 'Noto Sans', 'Roboto', sans-serif;
+    --displayTxt: 'Permanent Marker', sans-serif;
+  
+  }
+  
+  /* shifts bg to white and text to black for people who prefer a light theme */
+  @media (prefers-color-scheme: dark) {
+    --mainBg: var(--darkBg);
+    --mainColor: var(--darkColor);
+  }
+  
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  /* remove all animations and transitions for people who prefer not to see them */
+  @media (prefers-reduced-motion: reduce) { 
+    * {
+        animation-play-state: paused;
+        transition: none;
+        scroll-behavior: auto;
+    }
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    background-color: var(--mainBg);
+    color: var(--mainColor);
+    margin: 0;
+    padding: 0;
+    font-family: var(--bodyTxt);
+  }
+  
+  img {
+    height: auto;
+    width: 100%;
+  }
+  
+  .url {
+    display: none;
+  }
+  .mxWidthLg {
+    max-width: 100ch;
+  }
+  
+  .mxWidthSm {
+    max-width: 3rem;
+  }
+  
+  .minWidthFull {
+    min-width: 100%;
+  }
+  
+  .widthFull {
+    width: 100%;
+  }
+  
+  .noListDiscs {
+    list-style-type: none;
+  }
+  
+  nav ul li {
+    text-decoration: none;
+    margin-left: .5rem;
+    padding: .25rem;
+  }
+  
+  nav ul:nth-child(n+2) {
+    margin-left: .5rem;
+  }
+  
+  .minWidthFifty {
+    min-width:50%
+  }
+  
+  /* .display { */
+    /* font-family: var(--displayTxt); */
+  /* } */
+  
+  .marginMed {
+    margin: 1.5em;
+  }
+  
+  .marginLg {
+    margin: 2rem;
+  }
+  
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+  
+  .grid {
+    display: grid;
+  }
+  
+  .gapTwoRem {
+    grid-gap: 2rem; /* fallback */
+    gap: 2rem;
+  }
+  
+  .gridResponsive {
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
+  }
+  
+  .justifyCenter {
+    justify-content: center;
+    justify-items: center;
+  }
+  
+  .justifyEnd {
+    justify-content: flex-end;
+    justify-items: end;
+  }
+  
+  .justifySpaceBetween {
+    justify-content: space-between;
+  }
+  
+  .alignCenter {
+    align-content: center;
+    align-items: center;
+  }
+  
+  .thumbnail {
+    max-height: calc(2rem + 1.5vw);
+    height: auto;
+    max-width: 100%;
+  }
+  
+  .firstCap {
+    text-transform: capitalize;
+  }
+  
+  .btn {
+    margin: 1rem;
+  }
+  
+  /* Modal Button */
