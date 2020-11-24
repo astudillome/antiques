@@ -43,20 +43,12 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {
-<<<<<<< HEAD
-  successRedirect: '/profile',
-=======
   successRedirect: '/',
->>>>>>> submain
   failureRedirect: '/auth/login',
   failureFlash: 'Invalid username and/or password',
   successFlash: 'You have logged in'
 }));
 
-<<<<<<< HEAD
-
-=======
->>>>>>> submain
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success', 'You have logged out');
